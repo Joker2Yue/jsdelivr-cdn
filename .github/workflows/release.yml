@@ -17,7 +17,9 @@ jobs:
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: release-drafter/release-drafter@v6
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Release Drafter
+        uses: release-drafter/release-drafter@v6
         env:
-          GITHUB_TOKEN: ${{ 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 }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
