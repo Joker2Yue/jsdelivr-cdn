@@ -1,5 +1,5 @@
 # Configuration for Release Drafter: https://github.com/toolmantim/release-drafter
-name-template: 'v$NEXT_PATCH_VERSION 🌈'
+name-template: 'v$NEXT_PATCH_VERSION 🌈' # 下一个补丁版本号。例如，如果最后一个标签或版本是 v1.2.3 ，则该值将为 v1.2.4 。这是最常用的值。
 tag-template: 'v$NEXT_PATCH_VERSION'
 version-template: $MAJOR.$MINOR.$PATCH
 # Emoji reference: https://gitmoji.carloscuesta.me/
@@ -42,3 +42,4 @@ template: |
   Terms
   Privacy
   Security
+publish: true
