@@ -13,57 +13,29 @@ categories:
     labels:
       - 'fix'
       - 'bugfix'
-      - 'hotfix'
-  - title: '🧰 Maintenance'
+      - 'bug'
+      - 'regression'
+      - 'kind/bug'
+  - title: 📝 Documentation updates
     labels:
-      - 'refactor'
-      - 'enhancement'
-  - title: '📃 Documentation'
-    label: 'documentation'
+      - documentation
+      - 'kind/doc'
+  - title: 👻 Maintenance
+    labels:
+      - chore
+      - dependencies
+      - 'kind/chore'
+      - 'kind/dep'
+  - title: 🚦 Tests
+    labels:
+      - test
+      - tests
 exclude-labels:
-  - 'skip-changelog'
-replacers:
-  - search: '/FN-(\d{1,4})/g'
-    replace: '[FN-$1](https://betconstruct.atlassian.net/browse/FN-$1)'
-autolabeler:
-  - label: 'bugfix'
-    branch:
-      - '/bugfix\/.+/'
-  - label: 'hotfix'
-    branch:
-      - '/hotfix\/.+/'
-  - label: 'enhancement'
-    branch:
-      - '/enhancement\/.+/'
-  - label: 'refactor'
-    branch:
-      - '/refactor\/.+/'
-  - label: 'feature'
-    branch:
-      - '/feature\/.+/'
-  - label: 'release'
-    branch:
-      - '/release\/.+/'
-  - label: 'experimental'
-    branch:
-      - '/experimental\/.+/'
-  - label: 'skip-changelog'
-    branch:
-      - '/(main|develop|experimental).*/'
-version-resolver:
-  major:
-    labels:
-      - 'major'
-  minor:
-    labels:
-      - 'release'
-  patch:
-    labels:
-      - 'hotfix'
-publish: true
-latest: true
+  - reverted
+  - no-changelog
+  - skip-changelog
+  - invalid
+change-template: '* $TITLE (#$NUMBER) @$AUTHOR'
 template: |
-  ## Changes
-
+  ## What’s Changed
   $CHANGES
-change-template: '* $TITLE'
