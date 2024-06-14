@@ -1,26 +1,9 @@
-.idea/
-.vscode/
-node_modules/
-target/
-
-*.html
-*.js
-*.css
-*.log
-*.xml
-*.json
-
-# Ignore all files and directories except specific ones
+# Ignore all files except specified directories and their contents
 /*
-!/blog
-/blog/*
-!/blog/post
-!/blog/images
-/blog/images/**
-!/blog/post/*
-!/blog/post/2022
-/blog/post/2022/**
-!/blog/post/2023
-/blog/post/2023/**
-!/blog/post/2024
-/blog/post/2024/**
+!blog/post/2022/
+!blog/post/2023/
+!blog/post/2024/
+!blog/images/
+
+# Ignore all other files and directories
+*
