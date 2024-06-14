@@ -1,9 +1,33 @@
-# Ignore all files except specified directories and their contents
-/*
-!blog/post/2022/
-!blog/post/2023/
-!blog/post/2024/
-!blog/images/
+# 排除IDEA和VSCODE
+.idea/
+.vscode/
 
-# Ignore all other files and directories
-*
+/blog/post/about/
+/blog/post/air-conditioner/
+/blog/post/anzhiyu/
+/blog/post/archives/
+/blog/post/categories/
+/blog/post/comments/
+/blog/post/cookies/
+/blog/post/copyright/
+/blog/post/css/
+/blog/post/essay/
+/blog/post/fcircle/
+/blog/post/images/
+/blog/post/img/
+/blog/post/js/
+/blog/post/json/
+/blog/post/link/
+/blog/post/music/
+/blog/post/page/
+/blog/post/privacy/
+/blog/post/tags/
+/blog/post/website/
+/blog/post/404.html
+/blog/post/atom.xml
+/blog/post/favicon.ico
+/blog/post/index.html
+/blog/post/manifest.json
+/blog/post/search.xml
+/blog/post/sw.js
+/blog/post/sw-dom.js
