@@ -2,3 +2,25 @@
 .vscode/
 node_modules/
 target/
+
+*.html
+*.js
+*.css
+*.log
+*.xml
+*.json
+
+# Ignore all files and directories except specific ones
+/*
+!/blog
+/blog/*
+!/blog/post
+!/blog/images
+/blog/images/**
+!/blog/post/*
+!/blog/post/2022
+/blog/post/2022/**
+!/blog/post/2023
+/blog/post/2023/**
+!/blog/post/2024
+/blog/post/2024/**
