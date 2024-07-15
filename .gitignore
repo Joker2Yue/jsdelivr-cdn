@@ -2,32 +2,6 @@
 .idea/
 .vscode/
 
-# 忽略所有文件和文件夹
-/*
-
-# 例外：跟踪 .gitignore 文件
-!.gitignore
-
-# 例外：跟踪 blog/post/2022 文件夹及其子目录
-!blog/
-blog/*
-!blog/post/
-blog/post/*
-!blog/post/2022/
-blog/post/2022/**
-
-# 例外：跟踪 blog/post/2023 文件夹及其子目录
-!blog/post/2023/
-blog/post/2023/**
-
-# 例外：跟踪 blog/post/2024 文件夹及其子目录
-!blog/post/2024/
-blog/post/2024/**
-
-# 例外：跟踪 blog/images 文件夹及其子目录
-!blog/images/
-blog/images/**
-
 # 例外：跟踪 .github 文件夹及其子目录
 !.github/
 .github/**
