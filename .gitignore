@@ -1,8 +1,0 @@
-# 排除IDEA和VSCODE
-.idea/
-.vscode/
-
-# 例外：跟踪 .github 文件夹及其子目录
-!.github/
-.github/**
-.html
