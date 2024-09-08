@@ -99,7 +99,16 @@
     }
 
     // noinspection JSFileReferences
-    let skipRequest = request => request.url.startsWith('https://i0.hdslb.com')
+    let skipRequest = request => {
+    const skipUrls = [
+        'https://i0.hdslb.com',
+        'https://img2color-go.joker2yue.cn',
+        'https://hexo-circle-of-firends.joker2yue.cn',
+        'https://meting-api.joker2yue.cn',
+    ];
+
+    return skipUrls.some(url => request.url.startsWith(url));
+}
 let cacheRules = {
 simple: {
 clean: true,
@@ -128,9 +137,15 @@ match: url =>
 
 let modifyRequest = request => {
     const url = request.url
-    const source = 'sdk.51.la/perf'
-    if (url.includes(source) && url.match(/\.(js)$/)) {
-        return new Request(url.replace(source, 'resource.joker2yue.cn/blog/js'), request)
+    console.log(url);
+    if (url.includes('sdk.51.la') && url.match(/\.(js)$/)) {
+        const newUrl = url.replace('sdk.51.la', 'resource.joker2yue.cn/blog/js');
+        console.log(newUrl)
+        return new Request(newUrl, request);
+    }
+    if(url.includes('lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js')){
+        console.log("正在尝试替换。")
+        return new Request('https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js',request);
     }
 }
 let getSpareUrls = srcUrl => {
@@ -140,30 +155,41 @@ let getSpareUrls = srcUrl => {
             timeout: 3000,
             list: [
                 srcUrl,
-                `https://unpkg.com${pathname}`,
-                `https://npm.elemecdn.com${pathname}`,
+                `https://cdn.anheyu.com/npm/${pathname}`,
                 `https://npm.onmicrosoft.cn${pathname}`,
-                `https://fastly.jsdelivr.net/npm${pathname}`,
-                `https://cdnjs.cloudflare.com${pathname}`,
+                `https://npm.elemecdn.com${pathname}`,
+                `https://unpkg.com${pathname}`,
                 `https://cdn.jsdelivr.net/npm${pathname}`,
-                `https://cdn.anheyu.com/npm/${pathname}`
+            ],
+        };
+    }
+    if (srcUrl.startsWith("https://cdn.bootcdn.net")) {
+        const pathname = new URL(srcUrl).pathname;
+        return {
+            timeout: 3000,
+            list: [
+                srcUrl,
+                `https://mirrors.sustech.edu.cn/cdnjs/ajax/libs${pathname}`,
+                `https://cdnjs.cloudflare.com/ajax/libs${pathname}`,
             ],
         };
     }
     if (srcUrl.startsWith("https://resource.joker2yue.cn")) {
         return {
-            timeout: 3000,
-            list: [srcUrl, `https://cdn.jsdelivr.net/gh/Joker2Yue/jsdelivr-cdn/${new URL(srcUrl).pathname}`],
+            timeout: 5000,
+            list: [srcUrl, `https://cdn.jsdelivr.net/gh/Joker2Yue/jsdelivr-cdn${new URL(srcUrl).pathname}`],
         };
     }
-    const regex = /^(https?:\/\/)?([^/]+)\/(\d{4})\/(\d{2})\/(\d{2})\/([^/]+\/[^/]+\.(png|jpg|jpeg|gif|bmp|svg|webp))$/;
-    if (regex.test(srcUrl)) {
-        const match = srcUrl.match(regex);
-        const newPathname = `/blog/post/${match[3]}/${match[4]}/${match[5]}/${match[6]}`;
-        return {
-            timeout: 2000,
-            list: [srcUrl, `https://resource.joker2yue.cn${newPathname}`],
-        };
+    if (['png', 'jpg', 'jpeg', 'gif', 'bmp', 'svg', 'webp'].includes(srcUrl.split('.').pop())) {
+        const regex = /^(https?:\/\/)?([^/]+)\/(\d{4})\/(\d{2})\/(\d{2})\/([^/]+\/[^/]+\.(png|jpg|jpeg|gif|bmp|svg|webp))$/;
+        if (regex.test(srcUrl)) {
+            const match = srcUrl.match(regex);
+            const newPathname = `/blog/post/${match[3]}/${match[4]}/${match[5]}/${match[6]}`;
+            return {
+                timeout: 2000,
+                list: [srcUrl, "https://resource.joker2yue.cn" + newPathname],
+            };
+        }
     }
 }
 let isCors = () => false
