@@ -137,15 +137,12 @@ match: url =>
 
 let modifyRequest = request => {
     const url = request.url
-    console.log(url);
     if (url.includes('sdk.51.la') && url.match(/\.(js)$/)) {
         const newUrl = url.replace('sdk.51.la', 'resource.joker2yue.cn/blog/js');
-        console.log(newUrl)
         return new Request(newUrl, request);
     }
-    if(url.includes('lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js')){
-        console.log("正在尝试替换。")
-        return new Request('https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js',request);
+    if (url.includes('lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js')) {
+        return new Request('https://cdn.bootcdn.net/ajax/libs/qrcodejs/1.0.0/qrcode.min.js', request);
     }
 }
 let getSpareUrls = srcUrl => {

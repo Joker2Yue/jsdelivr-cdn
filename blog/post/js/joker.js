@@ -1,7 +1,7 @@
 // 定义一个函数来显示提示信息
 function showWarning() {
     if (anzhiyuPopupManager) {
-        anzhiyuPopupManager.enqueuePopup('网络状态不佳🕓', '加载时间可能稍久，请耐心等候或切换网络', null, 8000);
+        anzhiyuPopupManager.enqueuePopup('网络状态不佳🕓', '加载时间可能较长，请耐心等候或切换网络', null, 8000);
     }
 }
 
