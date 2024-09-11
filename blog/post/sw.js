@@ -106,8 +106,11 @@
         'https://hexo-circle-of-firends.joker2yue.cn',
         'https://meting-api.joker2yue.cn',
     ];
+    const skipPaths=[
+        '/cw-cgi/api?type=config'
+    ]
 
-    return skipUrls.some(url => request.url.startsWith(url));
+    return skipUrls.some(url => request.url.startsWith(url)) || skipPaths.includes(request.url.pathname);
 }
 let cacheRules = {
 simple: {
